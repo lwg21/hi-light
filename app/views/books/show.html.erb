@@ -26,7 +26,7 @@
   <%= render "shared/searchinbook" %></div><br>
   <div class="container-quotes mb-5">
     <% @highlights.each do |highlight| %>
-      <div class="cards-quotes" data-controller="clip">
+      <div class="cards-quotes" data-controller="clip highlight">
         <i class="quotes fa-solid fa-quote-left"></i>
         <div class="card-quote-content">
           <p class="" data-clip-target="item"><%= highlight.quote %> </p>
@@ -58,13 +58,11 @@
 
           <div class="icons">
             <i class="icon fa-solid fa-tag" data-action="click->edit-tag#displayForm"></i>
-            <%= link_to highlight_path(highlight, book: @book), data: {turbo_method: :patch } do %>
-              <% if current_user.favorited?(highlight) %>
-                <i class="icon fa-solid fa-heart" id="favorite-heart"></i>
-              <% else %>
-                <i class="icon fa-regular fa-heart"></i>
-              <% end %>
-            <% end %>
+            <i class="icon fa-heart <%= current_user.favorited?(highlight) ? 'fa-solid favorite-heart' : 'fa-regular' %>"
+              data-action="click->highlight#toggleFavorite"
+              data-highlight-target="heart"
+              data-highlight-favurl="<%= highlight_path(highlight) %>">
+            </i>
             <%= link_to highlight_path(highlight, book: @book), data: {turbo_method: :delete, turbo_confirm: "Are you sure?", id:"delete"} do %>
               <i class="icon fa-regular fa-trash-can"> </i>
             <% end %>
