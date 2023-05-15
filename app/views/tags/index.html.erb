@@ -23,13 +23,13 @@
                       <p class="" data-clip-target="item"><%= highlight.quote %> </p>
                       <h5 class="d-flex justify-content-end"><%= highlight.book.title %> - p. <%= highlight.page %> </h5>
                     </div>
-                    <div class="cards-quotes-actions d-flex justify-content-between" data-controller="edit-tag">
+                    <div class="cards-quotes-actions d-flex" data-controller="edit-tag">
                       <div class="tags d-inline-flex">
                         <% highlight.tags.each do |tag| %>
                         <div class="tag-card text-decoration-none">
                           <div class="<%=tag.color%> x-pic">
                             <%= link_to hi_tag_path(highlight.hi_tags.where(tag: tag).pluck(:id)), data: {turbo_method: :delete, turbo_confirm: "Do you want to delete it?", id:"delete", class:"text-decoration-none"} do %>
-                              <div class="editt"><i class="fa-regular fa-circle-xmark"></i></div>
+                              <div class="editt mr-auto p-2"><i class="fa-regular fa-circle-xmark"></i></div>
                             <% end %>
                           <p><%= tag.name %></p>
                           </div>
@@ -37,7 +37,7 @@
                         <% end %>
                       </div>
 
-                        <%= simple_form_for [highlight, HiTag.new], class: "form", html: {class: "d-none form-inline", data: {edit_tag_target:"form"}} do |f| %>
+                        <%= simple_form_for [highlight, HiTag.new], class: "form", html: {class: "d-none form-inline-p-2", data: {edit_tag_target:"form"}} do |f| %>
                         <div class="flexbox-class">
                           <%= f.input :tag, label: false, collection: current_user.tags, include_hidden: false, wrapper_html: {class: "mb-0"}  %>
                           <%= f.submit "+", class: 'add-tag' %>
