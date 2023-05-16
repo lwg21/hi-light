@@ -9,8 +9,9 @@
     <% end %>
   </div>
 </div>
-<button class="new-tag-button"><%= link_to  '<i class="fa-solid fa-plus"></i> Create a new tag'.html_safe, new_tag_path, id:"new-tag-text"%></button>
-
+<div class="d-flex justify-content-center">
+  <button class="new-tag-button"><%= link_to  '<i class="fa-solid fa-plus"></i> Create a new tag'.html_safe, new_tag_path, id:"new-tag-text"%></button>
+</div>
 <div class="container justify-content-center">
   <div class="tags-table" data-edit-tag-target="infos">
     <table>
