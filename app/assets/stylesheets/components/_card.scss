@@ -560,7 +560,8 @@ svg:hover {
   padding: 0px 6px;
   color: white;
   text-align: right;
-  margin-left: 4px;
+  align-self: right;
+  margin-right: 4px;
 }
 
 .add-tag:hover {
@@ -574,7 +575,6 @@ svg:hover {
 
 .flexbox-class {
   display: flex;
-  justify-content: space-between;
   align-items: flex-end;
   .form-group {
     width: 50%;
@@ -582,7 +582,8 @@ svg:hover {
   .select {
     margin-bottom: 0px !important;
     font-size: 13px;
-    padding: 0px 0px 0px 15px !important;
+    padding: 0px 4px 0px 5px;
+    overflow: hidden;
   }
 }
 
@@ -625,6 +626,11 @@ svg:hover {
   span {
     margin: 0 4px;
   }
+}
+
+.form-select {
+  background-position: right 0.1rem center;
+  padding-right: 20px !important
 }
 
 .book-cover:hover .book-cover-links {
