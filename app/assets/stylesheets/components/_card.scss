@@ -195,12 +195,12 @@
   margin-left: 3px;
   transition: 0.3s;
   transform: translate3D(0,-1px,0) scale(1.01);
-  color: rgb(125, 124, 124);
+  // color: rgb(125, 124, 124);
   cursor: pointer;
   text-decoration: none !important;
 }
 
-#favorite-heart {
+.favorite-heart {
   color: $orange;
 }
 

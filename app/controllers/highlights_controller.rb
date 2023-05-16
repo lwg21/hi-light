@@ -28,7 +28,6 @@ class HighlightsController < ApplicationController
     else
       current_user.favorite(@highlight)
     end
-    redirect_back_or_to book_path(@highlight.book)
   end
 
   def import

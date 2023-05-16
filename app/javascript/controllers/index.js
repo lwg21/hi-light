@@ -4,8 +4,8 @@
 
 import { application } from "./application"
 
-import BooksIndexController from "./booksindex_controller"
-application.register("booksindex", BooksIndexController)
+import BooksindexController from "./booksindex_controller"
+application.register("booksindex", BooksindexController)
 
 import ClipController from "./clip_controller"
 application.register("clip", ClipController)
@@ -15,3 +15,6 @@ application.register("edit-tag", EditTagController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import HighlightController from "./highlight_controller"
+application.register("highlight", HighlightController)
