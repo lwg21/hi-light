@@ -19,7 +19,8 @@ class HighlightsController < ApplicationController
 
   def destroy
     @highlight.destroy
-    redirect_back_or_to book_path(@highlight.book)
+    # Removed redirect to allow for AJAX use
+    # redirect_back_or_to book_path(@highlight.book)
   end
 
   def update
@@ -28,6 +29,8 @@ class HighlightsController < ApplicationController
     else
       current_user.favorite(@highlight)
     end
+    # Removed redirect to allow for AJAX use
+    # redirect_back_or_to book_path(@highlight.book)
   end
 
   def import
