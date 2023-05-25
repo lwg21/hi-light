@@ -26,10 +26,10 @@
   <%= render "shared/searchinbook" %></div><br>
   <div class="container-quotes mb-5">
     <% @highlights.each do |highlight| %>
-      <div class="cards-quotes" data-controller="clip highlight">
+      <div class="cards-quotes" data-controller="highlight" data-highlight-url-value="<%= highlight_path(highlight) %>">
         <i class="quotes fa-solid fa-quote-left"></i>
         <div class="card-quote-content">
-          <p class="" data-clip-target="item"><%= highlight.quote %> </p>
+          <p class="" data-highlight-target="item"><%= highlight.quote %> </p>
           <h5 class="d-flex justify-content-end"> p. <%= highlight.page %> </h5>
           <i class="fe fe-heart"></i>
         </div>
@@ -58,15 +58,19 @@
 
           <div class="icons">
             <i class="icon fa-solid fa-tag" data-action="click->edit-tag#displayForm"></i>
-            <i class="icon fa-heart <%= current_user.favorited?(highlight) ? 'fa-solid favorite-heart' : 'fa-regular' %>"
+            <i
+              class="icon fa-heart <%= current_user.favorited?(highlight) ? 'fa-solid favorite-heart' : 'fa-regular' %>"
               data-action="click->highlight#toggleFavorite"
-              data-highlight-target="heart"
-              data-highlight-favurl="<%= highlight_path(highlight) %>">
+              data-highlight-target="heart">
             </i>
-            <%= link_to highlight_path(highlight, book: @book), data: {turbo_method: :delete, turbo_confirm: "Are you sure?", id:"delete"} do %>
-              <i class="icon fa-regular fa-trash-can"> </i>
-            <% end %>
-            <i data-action="click->clip#copy" class="icon fa-regular fa-clone"></i>
+            <i
+              class="icon fa-regular fa-trash-can"
+              data-action="click->highlight#deleteHighlight">
+            </i>
+            <i
+              class="icon fa-regular fa-clone"
+              data-action="click->highlight#copyToClipboard">
+            </i>
           </div>
         </div>
       </div>

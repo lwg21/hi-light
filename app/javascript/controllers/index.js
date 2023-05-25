@@ -7,9 +7,6 @@ import { application } from "./application"
 import BooksindexController from "./booksindex_controller"
 application.register("booksindex", BooksindexController)
 
-import ClipController from "./clip_controller"
-application.register("clip", ClipController)
-
 import EditTagController from "./edit_tag_controller"
 application.register("edit-tag", EditTagController)
 
