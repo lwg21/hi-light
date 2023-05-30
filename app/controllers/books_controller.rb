@@ -21,10 +21,10 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     if params[:query].present?
       sql_query = <<~SQL
-        highlights.quote @@ :query
+      highlights.quote @@ :query
       SQL
       @highlights = @book.highlights
-        .where(sql_query, query: "%#{params[:query]}%")
+      .where(sql_query, query: "%#{params[:query]}%")
     else
       @highlights = @book.highlights
     end
@@ -49,7 +49,10 @@ class BooksController < ApplicationController
   def set_parsed_cover
     @book.parse_cover
     @book.save
-    redirect_to book_path(@book)
+    # redirect_to book_path(@book)
+    options = {crop: :fill}
+    # cover: Cloudinary::Utils.cloudinary_url(@book.cover.key, options)
+    render json: { book: @book, cover: @book.cover.url }
   end
 
   def set_parsed_cover_for_all
