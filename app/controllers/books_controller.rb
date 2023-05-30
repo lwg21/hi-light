@@ -70,7 +70,7 @@ class BooksController < ApplicationController
     @book.set_default_cover
     @book.save
     # redirect_to book_path(@book)
-    @book
+    render json: @book, only: [:default_cover]
   end
 
   private

@@ -1,5 +1,7 @@
 <div class="container-main">
-  <div class="d-flex justify-content-center align-items-center mt-5">
+  <div class="d-flex justify-content-center align-items-center mt-5"
+       data-controller="book-info"
+       data-book-info-random-cover-url-value="<%= random_cover_path(@book) %>">
       <div class="book-cover">
         <% if @book.cover.attached? %>
           <%= cl_image_tag @book.cover.key, crop: :fill %>
@@ -13,6 +15,9 @@
           <%= link_to random_cover_path(@book), data: {turbo_method: :patch } do %>
             <i class="fa-solid fa-shuffle"></i><span>Random</span>
           <% end %>
+          <div data-action="click->book-info#randomCover">
+            <i class="fa-solid fa-shuffle"></i><span>Random</span>
+          </div>
         </div>
       </div>
       <div class="book-info">
