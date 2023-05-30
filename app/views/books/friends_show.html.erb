@@ -19,7 +19,7 @@
         <% if @book.cover.attached? %>
           <%= cl_image_tag @book.cover.key, crop: :fill %>
         <% else %>
-          <%= image_tag "covers/cover-#{@book.default_cover}.png", id: "book-cover-show" %>
+          <%= image_tag "covers/cover-#{@book.default_cover}.png", class: "book-cover-show" %>
         <% end %>
       </div>
       <div class="friend-book-info">

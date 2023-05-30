@@ -4,8 +4,8 @@
 
 import { application } from "./application"
 
-import BooksindexController from "./booksindex_controller"
-application.register("booksindex", BooksindexController)
+import BookInfoController from "./book_info_controller"
+application.register("book-info", BookInfoController)
 
 import EditTagController from "./edit_tag_controller"
 application.register("edit-tag", EditTagController)

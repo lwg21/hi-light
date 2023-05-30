@@ -36,6 +36,5 @@ export default class extends Controller {
 
   copyToClipboard() {
     navigator.clipboard.writeText(this.itemTarget.innerHTML)
-    window.alert("Copied to clipboard!");
   }
 }
