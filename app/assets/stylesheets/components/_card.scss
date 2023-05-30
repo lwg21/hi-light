@@ -68,7 +68,7 @@
   // transition: 0.6s;
 }
 
-#book-cover-show {
+.book-cover-show {
   height: 205px;
   width: 155px;
   border-radius: 5%;
@@ -596,7 +596,6 @@ svg:hover {
 .book-cover {
   display: flex;
   flex-direction: column;
-  // justify-content: center;
   align-items: center;
 
   img {
@@ -607,16 +606,16 @@ svg:hover {
 
   .book-cover-links {
     visibility: hidden;
-  }
-
-  a {
-    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding-top: 5px;
     font-size: 12px;
     color: $gray;
   }
 
-  a:hover {
-    color: $orange
+  .book-cover-links > div:hover {
+    color: $orange;
+    cursor: pointer;
   }
 
   i {

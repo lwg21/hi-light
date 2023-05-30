@@ -12,18 +12,16 @@ export default class extends Controller {
   }
 
   randomCover() {
-    console.log("Random cover")
-    console.log(this.randomCoverUrlValue)
-
     fetch(`${this.randomCoverUrlValue}`, {
       method: 'PATCH',
       headers: {
         'X-CSRF-Token': this.crsfToken
-        // "Content-Type": "application/json"
-        // "Accept": "application/json"
       }
     })
     .then(response => response.json())
-    .then(data => console.log(data.default_cover))
+    .then(data => {
+      const defaultCoverPath = `/assets/covers/cover-${data.default_cover}.png`;
+      document.querySelector(".book-cover-show").src = defaultCoverPath;
+    })
   }
 }
