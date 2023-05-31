@@ -47,26 +47,26 @@ class BooksController < ApplicationController
   end
 
   def set_parsed_cover
-    @book.parse_cover
-    @book.save
+    unless @book.cover.attached?
+      @book.parse_cover
+      @book.save
+    end
     # redirect_to book_path(@book)
-    options = {crop: :fill}
-    # cover: Cloudinary::Utils.cloudinary_url(@book.cover.key, options)
     render json: { book: @book, cover: @book.cover.url }
   end
 
-  def set_parsed_cover_for_all
-    counter = 0
-    current_user.books.order(:title).each do |book|
-      unless book.cover.attached?
-        book.parse_cover
-        book.save
-        counter += 1
-      end
-      break if counter >= 3
-    end
-    redirect_to books_path
-  end
+  # def set_parsed_cover_for_all
+  #   counter = 0
+  #   current_user.books.order(:title).each do |book|
+  #     unless book.cover.attached?
+  #       book.parse_cover
+  #       book.save
+  #       counter += 1
+  #     end
+  #     break if counter >= 3
+  #   end
+  #   redirect_to books_path
+  # end
 
   def random_cover
     @book.cover.purge

@@ -2,6 +2,8 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="book-info"
 export default class extends Controller {
+  static targets = ["book"]
+
   static values = {
     randomCoverUrl: String,
     parseCoverUrl: String
@@ -30,8 +32,27 @@ export default class extends Controller {
     .then(data => {
       console.log(data)
       const bookCover = document.querySelector(".book-cover>img");
-      bookCover.src = data.cover;
-      bookCover.classList.remove("book-cover-show");
+      if (data.cover !== null) {
+        bookCover.src = data.cover;
+        bookCover.classList.remove("book-cover-show");
+      }
     })
+  }
+
+  parseAllCovers() {
+    console.log("parse ALL covers");
+    const books = this.bookTargets;
+    books.forEach((book) => {
+      console.log(book.dataset.parseCoverUrl);
+      fetch(`${book.dataset.parseCoverUrl}`, {method: 'PATCH', headers: {'X-CSRF-Token': this.crsfToken}})
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        const bookCover = book.querySelector("img");
+        if (data.cover !== null) {
+          bookCover.src = data.cover;
+        }
+      })
+    });
   }
 }
