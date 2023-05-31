@@ -21,10 +21,10 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     if params[:query].present?
       sql_query = <<~SQL
-        highlights.quote @@ :query
+      highlights.quote @@ :query
       SQL
       @highlights = @book.highlights
-        .where(sql_query, query: "%#{params[:query]}%")
+      .where(sql_query, query: "%#{params[:query]}%")
     else
       @highlights = @book.highlights
     end
@@ -47,22 +47,12 @@ class BooksController < ApplicationController
   end
 
   def set_parsed_cover
-    @book.parse_cover
-    @book.save
-    redirect_to book_path(@book)
-  end
-
-  def set_parsed_cover_for_all
-    counter = 0
-    current_user.books.order(:title).each do |book|
-      unless book.cover.attached?
-        book.parse_cover
-        book.save
-        counter += 1
-      end
-      break if counter >= 3
+    unless @book.cover.attached?
+      @book.parse_cover
+      @book.save
     end
-    redirect_to books_path
+    # redirect_to book_path(@book)
+    render json: { book: @book, cover: @book.cover.url }
   end
 
   def random_cover

@@ -26,6 +26,9 @@
 
 .search-by-buttons i:hover {
   opacity: 1;
+  color: $orange;
+  border: 1px solid $orange;
+  cursor: pointer;
 }
 
 .container-searchbar {
